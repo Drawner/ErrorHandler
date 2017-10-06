@@ -32,14 +32,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+/**
+ *  Copyright  2017  Andrious Solutions Ltd.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *     Created 7/6/2017
+ */
 public class ErrorHandler implements
         java.lang.Thread.UncaughtExceptionHandler{
 
     private static final UncaughtExceptionHandler oldHandler = Thread
             .getDefaultUncaughtExceptionHandler();
 
-    private static final String RECIPIENT = "gtfperry@gmail.com";
+    private static final String RECIPIENT = "<YOUR EMAIL ADDRESS>";
 
     private static Activity myActivity;
 
@@ -153,33 +169,34 @@ public class ErrorHandler implements
 
     public static void logCrash(){
 
-//        String contextName = getPackageName(myActivity);
-//
-//        Boolean loggable = Log.isLoggable(contextName, Log.ERROR);
-//
-//        if (!loggable){
-//
-//            return;
-//        }
+        String contextName = getPackageName(myActivity);
 
-//        // Empty the report builder in case it's not
-//        reportErrorHelper.reportEmptied();
-//
-//        reportErrorHelper.reportError(exception);
-//
-//        reportErrorHelper.reportCallStack(exception);
-//
-//        // reportErrorHelper.reportDeviceInfo();
-//
-//        reportErrorHelper.reportFirmware();
+        Boolean loggable = Log.isLoggable(contextName, Log.ERROR);
+
+        if (!loggable){
+
+            return;
+        }
+
+        // Empty the report builder in case it's not
+        reportErrorHelper.reportEmptied();
+
+        reportErrorHelper.reportError();
+
+        reportErrorHelper.reportCallStack();
+
+        // reportErrorHelper.reportDeviceInfo();
+
+        // reportErrorHelper.reportFirmware();
 
         if (inDebugger()){
 
-//            String errInfo = reportErrorHelper.errorMsg("deviceinfo");
+// //            String errInfo = reportErrorHelper.errorMsg("deviceinfo");
 
 //**  No need to record that in the logcat.
 //        Log.e(getPackageName(myActivity), errInfo);
 
+//**  No need to record in the database while developing.
 //            // Record to a database.
 //            recError(errInfo);
         }else{
@@ -433,7 +450,7 @@ public class ErrorHandler implements
         if (!log.isEmpty())
 
         {
-            http.post(log, "https://sites.google.com/site/mydotscalendar/errors.txt");
+            http.post(log, "<YOUR WEBSITE>/errors.txt");
         }
     }
 
