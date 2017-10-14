@@ -1,0 +1,110 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_1_7
+
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+//    buildToolsVersion '24.0.3'
+//   buildToolsVersion '25.0.3'
+//    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
+
+    compileSdkVersion 25
+
+    defaultConfig {
+
+        minSdkVersion 25
+
+        targetSdkVersion 25
+
+        versionCode 2
+
+        versionName "1.0.2"
+
+        resConfig "en"
+
+        // Tells Gradle to build all variants of the library. Note that this
+        // may increase build times because Gradle must build multiple AARs,
+        // instead of only one..
+        publishNonDefault true
+
+        // Specifies the proguard directives to be used by an app using this library.
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    buildTypes {
+
+        release {
+
+            debuggable false
+
+            minifyEnabled true
+
+            shrinkResources true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+
+            debuggable true
+
+            minifyEnabled false
+
+            shrinkResources false
+
+            useProguard false
+
+//            testCoverageEnabled false
+        }
+    }
+}
+
+dependencies {
+
+    compile 'com.android.support:support-v4:25.3.1'
+    //    compile 'com.android.support:appcompat-v7:21.0.3'
+//    compile 'com.google.firebase:firebase-auth:9.0.2'
+
+    compile 'com.google.firebase:firebase-crash:9.8.0'
+    compile 'com.google.android.gms:play-services-drive:9.8.0'
+}
+
+apply plugin: 'maven'
+
+uploadArchives {
+
+    repositories.mavenDeployer {
+
+        pom.groupId = 'com.gtfp.errorhandler'
+        pom.artifactId = 'ErrorHandler'
+        pom.version = '0.0.1'
+        repository(url: 'file:///Programs/Tools/Projects/repository')
+    }
+}
+
+//  New Gradle task under 'other'
+task deleteJar(type: Delete) {
+
+    delete 'libs/errorhandler.jar'
+}
+
+// New Gradle task under 'other' (Double Click to invoke)
+task createJar(type: Copy) {
+
+    from('build/intermediates/bundles/debug/')
+    into('libs/')
+    include('classes.jar')
+    rename('classes.jar', 'errorhandler.jar')
+}
+
+// Rule
+createJar.dependsOn(deleteJar, build)
+
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'

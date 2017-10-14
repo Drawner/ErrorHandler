@@ -1,12 +1,11 @@
 # Error Handler Project
 
 # Specific files
-build.gradle
-AndroidManifest.xml
-proguard-rules.pro
-settings.gradle
-gradlew
-gradlew.bat
+#build.gradle
+#AndroidManifest.xml
+#settings.gradle
+#gradlew
+#gradlew.bat
 import-summary.txt
 
 # Built application files
@@ -69,3 +68,13 @@ freeline_project_description.json
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+
+# Unversioned files.
+app/libs/
+app/proguard-rules.pro
+app/src/main/assets/
+app/src/main/java/com/gtfp/errorhandler/display/
+app/src/main/res/drawable-hdpi/
+app/src/main/res/drawable-mdpi/
+app/src/main/res/drawable-xhdpi/
+projectFilesBackup/
