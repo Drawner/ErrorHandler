@@ -10,27 +10,45 @@ android {
         versionCode 1
         versionName "1.0"
 
-        // Tells Gradle to build all variants of the library. Note that this
-        // may increase build times because Gradle must build multiple AARs,
-        // instead of only one.
-        publishNonDefault true
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
+
         release {
+
+            debuggable false
+
+            minifyEnabled true
+
+            shrinkResources true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+
+            debuggable true
+
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            shrinkResources false
+
+            useProguard false
+
+            testCoverageEnabled false
         }
     }
 }
 
 dependencies {
 
+//    compile project(':ErrorHandler')
     releaseCompile project(path: ':ErrorHandler', configuration: 'release')
     debugCompile project(path: ':ErrorHandler', configuration: 'debug')
 
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })

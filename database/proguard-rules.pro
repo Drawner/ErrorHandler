@@ -8,7 +8,7 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
--keep public class com.andrious.errorhandler.firebase.** {
+-keep public class com.andrious.errorhandler.database.** {
     public protected *;
 }
 
@@ -28,6 +28,7 @@
 # Necessary since adding compile files('../../../libs/opencsv/opencsv-3.3.jar')
 -dontwarn org.apache.commons.collections.BeanMap
 -dontwarn java.beans.**
+-dontwarn org.junit.**
 
 ##---------------Begin: proguard configuration common for all Android apps ----------
 
@@ -47,9 +48,9 @@
  -verbose
  # This can improve the results of the optimization step.
  # Only applicable when obfuscating with the -repackageclasses option.
- -allowaccessmodification
+-allowaccessmodification
  ## Removes package names making the code even smaller and less comprehensible.
- -repackageclasses ''
+-repackageclasses ''
 
 
 #Describes the internal structure of all the class files in the APK.

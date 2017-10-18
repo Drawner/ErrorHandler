@@ -1,4 +1,4 @@
-include ':ErrorHandler', ':ErrorDisplay', ':ErrorFirbase'
+include ':ErrorHandler', ':ErrorDisplay', ':ErrorFirbase', ':ErrorDatabase'
 
 project(':ErrorHandler').projectDir =
         new File('C:\\Programs\\Tools\\Projects\\libs\\ErrorHandler\\ErrorHandler')
@@ -6,5 +6,7 @@ project(':ErrorHandler').projectDir =
 project(':ErrorDisplay').projectDir =
         new File('C:\\Programs\\Tools\\Projects\\libs\\ErrorHandler\\display')
 
-project(':ErrorFirbase').projectDir = new File('C:\\Programs\\Tools\\Projects\\libs\\ErrorHandler\\firebase')
+project(':ErrorFirbase').projectDir =
+        new File('C:\\Programs\\Tools\\Projects\\libs\\ErrorHandler\\firebase')
 
+project(':ErrorDatabase').projectDir = new File('C:\\Programs\\Tools\\Projects\\libs\\ErrorHandler\\database')

@@ -23,16 +23,17 @@ import android.app.Activity;
 public class ErrorHandler implements
         java.lang.Thread.UncaughtExceptionHandler{
 
-    private static com.andrious.errorhandler.firebase.ErrorHandler mErrorFirebase;
-
-    private com.andrious.errorhandler.display.ErrorHandler mErrorHandler;
-
-
-
-
     private ErrorHandler(Activity activity){
 
-        mErrorHandler = com.andrious.errorhandler.display.ErrorHandler.getINSTANCE(activity);
+        mErrorHandler = com.gtfp.errorhandler.ErrorHandler.getINSTANCE(activity);
+    }
+
+
+
+
+    public static void toCatch(Activity activity){
+
+        Thread.setDefaultUncaughtExceptionHandler(getINSTANCE(activity));
     }
 
 
@@ -51,17 +52,17 @@ public class ErrorHandler implements
 
 
 
-    public static void toCatch(Activity activity){
+    public static void logError(String message){
 
-        Thread.setDefaultUncaughtExceptionHandler(getINSTANCE(activity));
+        com.gtfp.errorhandler.ErrorHandler.logError(message);
     }
 
 
 
 
-    public void defaultExceptionHandler(Thread thread, Throwable exception){
+    public static void logError(Throwable exception){
 
-        com.andrious.errorhandler.display.ErrorHandler.defaultExceptionHandler();
+        com.gtfp.errorhandler.ErrorHandler.logError(exception);
     }
 
 
@@ -69,7 +70,15 @@ public class ErrorHandler implements
 
     public static boolean inDebugger(){
 
-        return com.andrious.errorhandler.display.ErrorHandler.inDebugger();
+        return com.gtfp.errorhandler.ErrorHandler.inDebugger();
+    }
+
+
+
+
+    public void defaultExceptionHandler(Thread thread, Throwable exception){
+
+        com.gtfp.errorhandler.ErrorHandler.defaultExceptionHandler(thread, exception);
     }
 
 
@@ -78,13 +87,15 @@ public class ErrorHandler implements
     @Override
     public void uncaughtException(Thread thread, Throwable exception){
 
-        if (com.andrious.errorhandler.display.ErrorHandler.inDebugger()){
+        if (com.gtfp.errorhandler.ErrorHandler.inDebugger()){
 
             mErrorHandler.uncaughtException(thread, exception);
         }else{
 
             FirebaseCrash.report(exception);
         }
+
+        defaultExceptionHandler(thread, exception);
     }
 
 
@@ -98,4 +109,11 @@ public class ErrorHandler implements
 
         mErrorHandler = null;
     }
+
+
+
+
+    private static com.andrious.errorhandler.firebase.ErrorHandler mErrorFirebase;
+
+    private com.gtfp.errorhandler.ErrorHandler mErrorHandler;
 }

@@ -11,8 +11,10 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
--keep class com.gtfp.errorhandler.ErrorHandler { *; }
-
+#-keep class com.gtfp.errorhandler.ErrorHandler { *; }
+-keep public class com.gtfp.errorhandler.** {
+    public protected *;
+}
 
 # use this option to remove logging code.
 -assumenosideeffects class android.util.Log {

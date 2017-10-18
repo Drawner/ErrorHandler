@@ -106,9 +106,6 @@ public class ErrorHandler implements
 
 
 
-
-
-
     public static void logError(String message){
 
         if (message.isEmpty()){
@@ -170,7 +167,7 @@ public class ErrorHandler implements
 
 
 
-    public static void setErrorMessage(String errMsg){
+    private static void setErrorMessage(String errMsg){
 
         mErrorMessage = errMsg;
     }
@@ -268,7 +265,9 @@ public class ErrorHandler implements
 
         if (!exceptError.contains("error")){
 
-            mReportBuilder.append(reportError(exception));
+            setErrorMessage(reportError(exception));
+
+            mReportBuilder.append(getErrorMessage());
         }
 
         if (!exceptError.contains("callstack")){
@@ -398,6 +397,11 @@ public class ErrorHandler implements
     @Override
     public void uncaughtException(Thread thread, Throwable exception){
 
+        // Don't re-enter -- avoid infinite loops if crash-reporting crashes.
+        if (mCrashing) return;
+
+        mCrashing = true;
+
         catchException(thread, exception);
 
         defaultExceptionHandler(thread, exception);
@@ -465,6 +469,9 @@ public class ErrorHandler implements
 //
 //        mDBErrDatabase = null;
     }
+
+    // Prevents infinite loops.
+    private static volatile boolean mCrashing = false;
 
     private static final StringBuilder mReportBuilder = new StringBuilder();
 

@@ -8,5 +8,4 @@
         android:theme="@style/AppTheme"
         android:alwaysRetainTaskState="true" >
     </application>
-
 </manifest>
