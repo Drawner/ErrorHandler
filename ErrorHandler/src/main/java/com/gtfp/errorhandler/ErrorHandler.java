@@ -1,9 +1,5 @@
 package com.gtfp.errorhandler;
 
-//import com.gtfp.errorhandler.db.dbRecError;
-//import com.gtfp.errorhandler.frmwrk.db.dbHelper;
-//import com.gtfp.errorhandler.http.http;
-
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ApplicationErrorReport;
@@ -42,11 +38,7 @@ public class ErrorHandler implements
 
     private ErrorHandler(Activity activity){
 
-//        mDBErrDatabase = ErrorDatabase(activity);
-
         mPackageName = getPackageName(activity);
-
-//        mErrorCount = countErrors();
     }
 
 
@@ -131,30 +123,6 @@ public class ErrorHandler implements
         }
     }
 
-//    public static int countErrors(){
-//
-//        if (mDBErrDatabase.open().isOpen()){
-//
-//            Cursor recs = mDBErrDatabase.getRecs();
-//
-//            mErrorCount = recs.getCount();
-//
-//            recs.close();
-//
-//            mDBErrDatabase.close();
-//        }
-//
-//        return mErrorCount;
-//    }
-
-//    private static dbHelper ErrorDatabase(Activity activity){
-//
-//        dbRecError dbRecords = new dbRecError();
-//
-//        return dbHelper.GETINSTANCE(activity, dbRecords, dbRecords.dbFile(), null,
-//                    dbRecords.dbVersion(), dbRecords);
-//    }
-
 
 
 
@@ -171,29 +139,6 @@ public class ErrorHandler implements
 
         mErrorMessage = errMsg;
     }
-
-//    private static boolean recError(String errInfo){
-//
-//        boolean recErr = mDBErrDatabase.open().isOpen();
-//
-//        if (recErr){
-//
-//            dbRecError dbRecords = new dbRecError();
-//
-//            dbRecords.VALUES.put("errMsg", getErrorMessage());
-//
-//            dbRecords.VALUES.put("errInfo", errInfo);
-//
-//            recErr = mDBErrDatabase.save(dbRecords);
-//
-//            // Update the error count
-//            mErrorCount = mDBErrDatabase.getRecs().getCount();
-//        }
-//
-//        mDBErrDatabase.close();
-//
-//        return recErr;
-//    }
 
 
 
@@ -225,11 +170,6 @@ public class ErrorHandler implements
                 .getApplicationLabel(lApplicationInfo) : "Unknown");
     }
 
-//    public static int getErrorCount(){
-//
-//        return mErrorCount;
-//    }
-
 
 
 
@@ -240,6 +180,9 @@ public class ErrorHandler implements
 
         return debugging;
     }
+
+
+
 
 //    public static void sendErrorHttp(ArrayList<HashMap<String, String>> errorList){
 //
@@ -450,11 +393,6 @@ public class ErrorHandler implements
 
     public static String logCrash(Throwable exception){
 
-//        if (!Log.isLoggable(mPackageName, Log.ERROR)){
-//
-//            return;
-//        }
-//
         return errorMsg(exception, "deviceinfo firmware");
     }
 
@@ -464,10 +402,6 @@ public class ErrorHandler implements
     public void onDestroy(){
 
         mErrorHandler = null;
-
-//        mDBErrDatabase.close();
-//
-//        mDBErrDatabase = null;
     }
 
     // Prevents infinite loops.
@@ -486,9 +420,5 @@ public class ErrorHandler implements
 
     private static ApplicationErrorReport.CrashInfo mCrashInfo;
 
-//    private static dbHelper mDBErrDatabase;
-
     private static String mErrorMessage = "";
-
-//    private static int mErrorCount = 0;
 }
