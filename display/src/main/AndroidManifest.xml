@@ -3,11 +3,15 @@
     <application android:allowBackup="true"
                  android:label="@string/app_name"
                  android:supportsRtl="true">
-        <activity android:name=".ExceptionDisplay">
-            <!-- Launch activity as default from Android Studio -->
+        <activity
+                android:name=".ErrorDisplay"
+                android:process=":error_display"
+                android:theme="@android:style/Theme.Dialog"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:windowSoftInputMode="stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name=".ErrorDisplay" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

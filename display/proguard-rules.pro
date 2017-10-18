@@ -8,25 +8,10 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
-
-# Add any project specific keep options here:
--keep class com.andrious.errorhandler.display.ErrorHandler { *; }
-
+#-keep class com.andrious.errorhandler.display.ErrorHandler { *; }
+-keep public class com.andrious.errorhandler.display.** {
+    public protected *;
+}
 
 # use this option to remove logging code.
 -assumenosideeffects class android.util.Log {
@@ -44,6 +29,7 @@
 # Necessary since adding compile files('../../../libs/opencsv/opencsv-3.3.jar')
 -dontwarn org.apache.commons.collections.BeanMap
 -dontwarn java.beans.**
+-dontwarn org.junit.**
 
 ##---------------Begin: proguard configuration common for all Android apps ----------
 
@@ -63,9 +49,9 @@
  -verbose
  # This can improve the results of the optimization step.
  # Only applicable when obfuscating with the -repackageclasses option.
- -allowaccessmodification
+-allowaccessmodification
  ## Removes package names making the code even smaller and less comprehensible.
- -repackageclasses ''
+-repackageclasses ''
 
 
 #Describes the internal structure of all the class files in the APK.
