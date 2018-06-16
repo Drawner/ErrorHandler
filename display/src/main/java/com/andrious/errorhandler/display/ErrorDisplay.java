@@ -34,7 +34,7 @@ public class ErrorDisplay extends Activity{
 
         alertDialog.setTitle("Error");
 
-        alertDialog.setMessage(com.gtfp.errorhandler.ErrorHandler.getErrorMessage());
+        alertDialog.setMessage(com.andrioussolutions.errorhandler.ErrorHandler.getErrorMessage());
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener(){
 

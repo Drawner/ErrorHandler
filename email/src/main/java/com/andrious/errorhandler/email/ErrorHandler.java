@@ -31,7 +31,7 @@ import java.util.List;
 public class ErrorHandler implements
         java.lang.Thread.UncaughtExceptionHandler{
 
-    private com.gtfp.errorhandler.ErrorHandler mErrorHandler;
+    private com.andrioussolutions.errorhandler.ErrorHandler mErrorHandler;
 
     private static Activity mActivity;
 
@@ -46,7 +46,7 @@ public class ErrorHandler implements
 
         mEmailAddress = emailAddress;
 
-        mErrorHandler = com.gtfp.errorhandler.ErrorHandler.getINSTANCE(activity);
+        mErrorHandler = com.andrioussolutions.errorhandler.ErrorHandler.getINSTANCE(activity);
     }
 
 

@@ -1,6 +1,6 @@
 package com.andrious.errorhandler.firebase;
 
-import com.google.firebase.crash.FirebaseCrash;
+//import com.google.firebase.crash.FirebaseCrash;
 
 import android.app.Activity;
 /**
@@ -25,7 +25,7 @@ public class ErrorHandler implements
 
     private ErrorHandler(Activity activity){
 
-        mErrorHandler = com.gtfp.errorhandler.ErrorHandler.getINSTANCE(activity);
+        mErrorHandler = com.andrioussolutions.errorhandler.ErrorHandler.getINSTANCE(activity);
     }
 
 
@@ -54,7 +54,7 @@ public class ErrorHandler implements
 
     public static void logError(String message){
 
-        com.gtfp.errorhandler.ErrorHandler.logError(message);
+        com.andrioussolutions.errorhandler.ErrorHandler.logError(message);
     }
 
 
@@ -62,7 +62,14 @@ public class ErrorHandler implements
 
     public static void logError(Throwable exception){
 
-        com.gtfp.errorhandler.ErrorHandler.logError(exception);
+        if (inDebugger()){
+
+            com.andrioussolutions.errorhandler.ErrorHandler.logError(exception);
+        }else{
+
+//            FirebaseCrash.report(exception);
+//            Crashlytics.logException(exception);
+        }
     }
 
 
@@ -70,7 +77,7 @@ public class ErrorHandler implements
 
     public static boolean inDebugger(){
 
-        return com.gtfp.errorhandler.ErrorHandler.inDebugger();
+        return com.andrioussolutions.errorhandler.ErrorHandler.inDebugger();
     }
 
 
@@ -78,7 +85,7 @@ public class ErrorHandler implements
 
     public void defaultExceptionHandler(Thread thread, Throwable exception){
 
-        com.gtfp.errorhandler.ErrorHandler.defaultExceptionHandler(thread, exception);
+        com.andrioussolutions.errorhandler.ErrorHandler.defaultExceptionHandler(thread, exception);
     }
 
 
@@ -87,13 +94,7 @@ public class ErrorHandler implements
     @Override
     public void uncaughtException(Thread thread, Throwable exception){
 
-        if (com.gtfp.errorhandler.ErrorHandler.inDebugger()){
-
-            mErrorHandler.uncaughtException(thread, exception);
-        }else{
-
-            FirebaseCrash.report(exception);
-        }
+        logError(exception);
 
         defaultExceptionHandler(thread, exception);
     }
@@ -115,5 +116,5 @@ public class ErrorHandler implements
 
     private static com.andrious.errorhandler.firebase.ErrorHandler mErrorFirebase;
 
-    private com.gtfp.errorhandler.ErrorHandler mErrorHandler;
+    private com.andrioussolutions.errorhandler.ErrorHandler mErrorHandler;
 }

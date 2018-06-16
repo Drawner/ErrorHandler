@@ -1,7 +1,7 @@
 package com.andrious.errorhandler.database;
 
-import com.gtfp.errorhandler.db.dbRecError;
-import com.gtfp.errorhandler.frmwrk.db.dbHelper;
+import com.andrioussolutions.errorhandler.db.dbRecError;
+import com.andrioussolutions.errorhandler.frmwrk.db.dbHelper;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -27,7 +27,7 @@ public class ErrorHandler implements
 
     private static com.andrious.errorhandler.database.ErrorHandler mErrorDatabase;
 
-    private com.gtfp.errorhandler.ErrorHandler mErrorHandler;
+    private com.andrioussolutions.errorhandler.ErrorHandler mErrorHandler;
 
     private static Thread mThread;
 
@@ -43,7 +43,7 @@ public class ErrorHandler implements
 
         mDBErrDatabase = ErrorDatabase(activity);
 
-        mErrorHandler = com.gtfp.errorhandler.ErrorHandler.getINSTANCE(activity);
+        mErrorHandler = com.andrioussolutions.errorhandler.ErrorHandler.getINSTANCE(activity);
 
         mErrorCount = countErrors();
     }
@@ -99,7 +99,7 @@ public class ErrorHandler implements
 
         if(mThread != null){
 
-            com.gtfp.errorhandler.ErrorHandler.defaultExceptionHandler(mThread, mException);
+            com.andrioussolutions.errorhandler.ErrorHandler.defaultExceptionHandler(mThread, mException);
         }
     }
 
@@ -108,7 +108,7 @@ public class ErrorHandler implements
 
     public static void defaultExceptionHandler(Thread thread, Throwable exception){
 
-        com.gtfp.errorhandler.ErrorHandler.defaultExceptionHandler(thread, exception);
+        com.andrioussolutions.errorhandler.ErrorHandler.defaultExceptionHandler(thread, exception);
     }
 
 
@@ -116,7 +116,7 @@ public class ErrorHandler implements
 
     public static void logError(String message){
 
-        com.gtfp.errorhandler.ErrorHandler.logError(message);
+        com.andrioussolutions.errorhandler.ErrorHandler.logError(message);
     }
 
 
@@ -124,7 +124,7 @@ public class ErrorHandler implements
 
     public static void logError(Throwable exception){
 
-        com.gtfp.errorhandler.ErrorHandler.logError(exception);
+        com.andrioussolutions.errorhandler.ErrorHandler.logError(exception);
     }
 
 
@@ -132,7 +132,7 @@ public class ErrorHandler implements
 
     public static boolean inDebugger(){
 
-        return com.gtfp.errorhandler.ErrorHandler.inDebugger();
+        return com.andrioussolutions.errorhandler.ErrorHandler.inDebugger();
     }
 
 

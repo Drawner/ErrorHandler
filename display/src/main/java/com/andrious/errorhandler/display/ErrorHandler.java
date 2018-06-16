@@ -29,7 +29,7 @@ public class ErrorHandler implements
 
         mActivity = activity;
 
-        mErrorHandler = com.gtfp.errorhandler.ErrorHandler.getINSTANCE(activity);
+        mErrorHandler = com.andrioussolutions.errorhandler.ErrorHandler.getINSTANCE(activity);
     }
 
 
@@ -63,7 +63,7 @@ public class ErrorHandler implements
 
         if (mThread != null){
 
-            com.gtfp.errorhandler.ErrorHandler.defaultExceptionHandler(mThread, mException);
+            com.andrioussolutions.errorhandler.ErrorHandler.defaultExceptionHandler(mThread, mException);
         }
     }
 
@@ -72,7 +72,7 @@ public class ErrorHandler implements
 
     public static void defaultExceptionHandler(Thread thread, Throwable exception){
 
-        com.gtfp.errorhandler.ErrorHandler.defaultExceptionHandler(thread, exception);
+        com.andrioussolutions.errorhandler.ErrorHandler.defaultExceptionHandler(thread, exception);
     }
 
 
@@ -80,7 +80,7 @@ public class ErrorHandler implements
 
     public static void logError(String message){
 
-        com.gtfp.errorhandler.ErrorHandler.logError(message);
+        com.andrioussolutions.errorhandler.ErrorHandler.logError(message);
     }
 
 
@@ -88,7 +88,7 @@ public class ErrorHandler implements
 
     public static void logError(Throwable exception){
 
-        com.gtfp.errorhandler.ErrorHandler.logError(exception);
+        com.andrioussolutions.errorhandler.ErrorHandler.logError(exception);
     }
 
 
@@ -96,7 +96,7 @@ public class ErrorHandler implements
 
     public static boolean inDebugger(){
 
-        return com.gtfp.errorhandler.ErrorHandler.inDebugger();
+        return com.andrioussolutions.errorhandler.ErrorHandler.inDebugger();
     }
 
 
@@ -238,7 +238,7 @@ public class ErrorHandler implements
 //
 //            alertDialog.setMessage(mActivity.getIntent().getStringExtra("errorMsg"));
 //
-//            alertDialog.setMessage(com.gtfp.errorhandler.ErrorHandler.getErrorMessage());
+//            alertDialog.setMessage(com.andrioussolutions.errorhandler.ErrorHandler.getErrorMessage());
 //
 //            DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener(){
 //
@@ -268,7 +268,7 @@ public class ErrorHandler implements
 
     private static Throwable mException;
 
-    private com.gtfp.errorhandler.ErrorHandler mErrorHandler;
+    private com.andrioussolutions.errorhandler.ErrorHandler mErrorHandler;
 
     private Activity mActivity;
 

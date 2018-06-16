@@ -12,15 +12,15 @@ android {
 //    buildToolsVersion '24.0.3'
 //   buildToolsVersion '25.0.3'
 //    buildToolsVersion "26.0.1"
-    buildToolsVersion "26.0.2"
+//    buildToolsVersion "26.0.2"
 
-    compileSdkVersion 25
+    compileSdkVersion 26
 
     defaultConfig {
 
         minSdkVersion 19
 
-        targetSdkVersion 25
+        targetSdkVersion 26
 
         versionCode 2
 
@@ -28,10 +28,10 @@ android {
 
         resConfig "en"
 
-        // Tells Gradle to build all variants of the library. Note that this
-        // may increase build times because Gradle must build multiple AARs,
-        // instead of only one..
-        publishNonDefault true
+//        // Tells Gradle to build all variants of the library. Note that this
+//        // may increase build times because Gradle must build multiple AARs,
+//        // instead of only one..
+//        publishNonDefault true
 
         // Specifies the proguard directives to be used by an app using this library.
         consumerProguardFiles 'proguard-rules.pro'
@@ -45,7 +45,7 @@ android {
 
             minifyEnabled true
 
-            shrinkResources true
+            shrinkResources false
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -67,44 +67,46 @@ android {
 
 dependencies {
 
-    compile 'com.android.support:support-v4:25.3.1'
+    implementation 'com.android.support:support-v4:26.1.0'
     //    compile 'com.android.support:appcompat-v7:21.0.3'
 //    compile 'com.google.firebase:firebase-auth:9.0.2'
 
-    compile 'com.google.firebase:firebase-crash:9.8.0'
-    compile 'com.google.android.gms:play-services-drive:9.8.0'
+//    implementation 'com.google.firebase:firebase-crash:9.8.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.3'
+
+//    compile 'com.google.android.gms:play-services-drive:11.8.0'
 }
 
 apply plugin: 'maven'
 
-uploadArchives {
+//uploadArchives {
+//
+//    repositories.mavenDeployer {
+//
+//        pom.groupId = 'com.gtfp.errorhandler'
+//        pom.artifactId = 'ErrorHandler'
+//        pom.version = '0.0.1'
+//        repository(url: 'file:///Programs/Tools/Projects/repository')
+//    }
+//}
 
-    repositories.mavenDeployer {
+////  New Gradle task under 'other'
+//task deleteJar(type: Delete) {
+//
+//    delete 'libs/errorhandler.jar'
+//}
 
-        pom.groupId = 'com.gtfp.errorhandler'
-        pom.artifactId = 'ErrorHandler'
-        pom.version = '0.0.1'
-        repository(url: 'file:///Programs/Tools/Projects/repository')
-    }
-}
+//// New Gradle task under 'other' (Double Click to invoke)
+//task createJar(type: Copy) {
+//
+//    from('build/intermediates/bundles/debug/')
+//    into('libs/')
+//    include('classes.jar')
+//    rename('classes.jar', 'errorhandler.jar')
+//}
 
-//  New Gradle task under 'other'
-task deleteJar(type: Delete) {
-
-    delete 'libs/errorhandler.jar'
-}
-
-// New Gradle task under 'other' (Double Click to invoke)
-task createJar(type: Copy) {
-
-    from('build/intermediates/bundles/debug/')
-    into('libs/')
-    include('classes.jar')
-    rename('classes.jar', 'errorhandler.jar')
-}
-
-// Rule
-createJar.dependsOn(deleteJar, build)
+//// Rule
+//createJar.dependsOn(deleteJar, build)
 
 // Add to the bottom of the file
 apply plugin: 'com.google.gms.google-services'
